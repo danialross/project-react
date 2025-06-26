@@ -20,7 +20,7 @@ export default function LogoBanner({ className }: LogoBannerProps) {
             "z-10 text-xl  text-center italic col-span-2 p-4 bg-tertiary rounded-lg border-4 border-primary"
           }
         >
-          Your Digitalisation Partner in Navigating The Future of Work
+          Empowering businesses with next-generation cloud-based solutions.
         </label>
         <img
           src={"/pattern.png"}
