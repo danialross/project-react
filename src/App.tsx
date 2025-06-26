@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import Register from "./components/Register";
+import Login from "./components/Login";
+import LogoBanner from "./components/LogoBanner";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [isRegistering, setIsRegistering] = useState(false);
+	return (
+		<div
+			className="relative bg-secondary w-screen h-screen grid grid-cols-2">
+			<Login setRegistering={setIsRegistering}/>
+			<Register setRegistering={setIsRegistering}/>
+			<LogoBanner
+				className={`absolute transition-transform duration-300 ease-in-out ${isRegistering ? 'translate-x-0' : 'translate-x-full'} `}/>
+
+		</div>
+	);
 }
 
 export default App;
