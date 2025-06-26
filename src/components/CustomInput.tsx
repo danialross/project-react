@@ -16,7 +16,7 @@ export default function CustomInput({
   return (
     <div className={"relative w-full flex items-center "}>
       <input
-        className={`${className} w-full focus:border-2 focus:outline-none focus:ring-4 focus:ring-tertiary border-2 border-primary rounded-lg p-2 bg-slate-50`}
+        className={`${className} w-full outline-none focus:border-2 focus:outline-none focus:ring-4 focus:ring-tertiary border-2 border-primary rounded-lg p-2 bg-slate-50 transition-all duration-300 ease-in-out`}
         placeholder={placeholder}
         type={isVisible ? "text" : "password"}
       />
