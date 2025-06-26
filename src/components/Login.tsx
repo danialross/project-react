@@ -14,8 +14,8 @@ export default function Login({ setRegistering }: LoginProps) {
         <p />
         Welcome Back!
       </h1>
-      <p className={"text-sm text-gray-400 pb-12"}>
-        Login to your account using your username and password.
+      <p className={"text-sm text-gray-400 pb-8"}>
+        Log in with your username and password.
       </p>
       <div
         className={"w-3/4  flex flex-col gap-6 items-start justify-center p-4"}
@@ -24,11 +24,11 @@ export default function Login({ setRegistering }: LoginProps) {
           <label>Username</label>
           <CustomInput />
         </div>
-        <div className={"w-full space-y-2"}>
+        <div className={"w-full space-y-2 pb-4"}>
           <label>Password</label>
           <CustomInput type="password" />
         </div>
-        <CustomButton onClick={() => {}}>Login</CustomButton>
+        <CustomButton>Login</CustomButton>
         <label>
           Don't have an account?{" "}
           <button
