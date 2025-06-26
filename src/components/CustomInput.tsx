@@ -23,10 +23,25 @@ export default function CustomInput({
 
       {type === "password" && (
         <div
-          className={"absolute right-3 top-1/2 -translate-y-1/2 ml-2"}
-          onClick={() => setIsVisible((prev) => !prev)}
+          className={"absolute right-5 top-1/2 -translate-y-1/2 ml-2"}
+          onMouseDown={() => setIsVisible(true)}
+          onMouseUp={() => setIsVisible(false)}
         >
-          {isVisible ? <FaRegEyeSlash size={20} /> : <FaRegEye size={20} />}
+          {isVisible ? (
+            <FaRegEyeSlash
+              size={20}
+              className={
+                "hover:scale-125 transition-transform duration-300 ease-in-out"
+              }
+            />
+          ) : (
+            <FaRegEye
+              size={20}
+              className={
+                "hover:scale-125 transition-transform duration-300 ease-in-out"
+              }
+            />
+          )}
         </div>
       )}
     </div>
