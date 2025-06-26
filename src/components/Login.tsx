@@ -9,12 +9,12 @@ type LoginProps = {
 export default function Login({ setRegistering }: LoginProps) {
   return (
     <div className={"w-full h-full flex flex-col items-center justify-center"}>
-      <h1 className={"w-full text-3xl font-semibold text-center"}>
+      <h1 className={"w-full text-3xl font-semibold text-center pb-4"}>
         Hello There,
         <p />
         Welcome Back!
       </h1>
-      <p className={"text-sm text-gray-400"}>
+      <p className={"text-sm text-gray-400 pb-12"}>
         Login to your account using your username and password.
       </p>
       <div
@@ -26,7 +26,7 @@ export default function Login({ setRegistering }: LoginProps) {
         </div>
         <div className={"w-full space-y-2"}>
           <label>Password</label>
-          <CustomInput />
+          <CustomInput type="password" />
         </div>
         <CustomButton onClick={() => {}}>Login</CustomButton>
         <label>
