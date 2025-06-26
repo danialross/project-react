@@ -30,7 +30,9 @@ export default function Login({ setRegistering }: LoginProps) {
         <label>
           Don't have an account?{" "}
           <button
-            className={"text-primary"}
+            className={
+              "text-primary hover:scale-125 hover:translate-x-2 transition-transform duration-200 ease-in-out"
+            }
             onClick={() => setRegistering?.(true)}
           >
             Register
