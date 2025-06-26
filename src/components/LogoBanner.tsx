@@ -1,45 +1,31 @@
-import { Dispatch, SetStateAction } from "react";
-
 type LogoBannerProps = {
   className?: string;
-  isRegistering?: Dispatch<SetStateAction<Boolean>>;
 };
 
-const logos = [
-  "/AssetX.webp",
-  "/ContractX.webp",
-  "/HotelX.svg",
-  "/HRX.webp",
-  "/PropertyX.webp",
-  "/RentX.webp",
-];
-export default function LogoBanner({
-  className,
-  isRegistering,
-}: LogoBannerProps) {
+export default function LogoBanner({ className }: LogoBannerProps) {
   return (
     <div className={`${className} w-1/2 h-full p-4`}>
-      <div className="bg-tertiary w-full h-full rounded-xl text-black p-4 grid grid-cols-2 place-items-center">
-        <img
-          src={"/Logo.webp"}
-          alt={"Logo"}
-          className={"w-2/3 h-2/3 object-contain col-span-2"}
-        />
-        <label className={"col-span-2 text-lg font-semibold text-center"}>
-          Empowering businesses with next-generation cloud-based solutions.
-        </label>
-        {logos.map((logo) => (
+      <div className="relative overflow-hidden bg-tertiary w-full h-full rounded-xl text-black p-8 flex flex-col gap-32 justify-center items-center">
+        <div
+          className={`z-10 rounded-full w-[300px] h-[300px] bg-tertiary flex items-center justify-center border-4 border-primary`}
+        >
           <img
-            key={logo}
-            src={logo}
-            alt={`${logo}`}
-            className={" object-contain w-full h-full"}
+            src={"/Logo.webp"}
+            alt={"Logo"}
+            className={" bg-tertiary w-[200px] h-[200px]  object-contain"}
           />
-        ))}
+        </div>
+        <label
+          className={
+            "z-10 text-xl  text-center italic col-span-2 p-4 bg-tertiary rounded-lg border-4 border-primary"
+          }
+        >
+          Your Digitalisation Partner in Navigating The Future of Work
+        </label>
         <img
-          src={"/AccountX.png"}
-          alt={"Logo"}
-          className={"w-1/3 h-1/3 object-contain col-span-2"}
+          src={"/pattern.png"}
+          alt={"pattern"}
+          className={"absolute z-1 h-full object-cover"}
         />
       </div>
     </div>
