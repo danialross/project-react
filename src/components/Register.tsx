@@ -1,11 +1,14 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import CustomInput from "./CustomInput";
 import CustomSelect from "./CustomSelect";
 import CustomButton from "./CustomButton";
 import { useForm } from "react-hook-form";
+import { User } from "../types";
 
 type RegisterProps = {
   setRegistering?: Dispatch<SetStateAction<boolean>>;
+  setUsers: Dispatch<SetStateAction<User[]>>;
+  users: User[];
 };
 
 type FormValues = {
@@ -15,13 +18,21 @@ type FormValues = {
   department: string;
 };
 
-export default function Register({ setRegistering }: RegisterProps) {
+export default function Register({
+  setRegistering,
+  setUsers,
+  users,
+}: RegisterProps) {
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [successMessage, setSuccessMessage] = useState<string>("");
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-    getValues,
+    reset,
     watch,
+    clearErrors,
   } = useForm<FormValues>({
     defaultValues: {
       username: "",
@@ -32,10 +43,48 @@ export default function Register({ setRegistering }: RegisterProps) {
   });
 
   const password = watch("password");
+  const username = watch("username");
 
-  const handleRegister = () => {
-    console.log(getValues());
+  const handleRegister = (data: FormValues) => {
+    clearMessage();
+    const isUserExist = users.find((user) => user.username === data.username);
+    if (isUserExist) {
+      setErrorMessage("User already exists");
+      return;
+    }
+    const { username, password, department } = data;
+    const newUser = {
+      username,
+      password,
+      department,
+    };
+    setUsers((prevState) => [...prevState, newUser]);
+    handleResetForm();
+    setSuccessMessage("Successfully registered");
   };
+
+  const clearMessage = () => {
+    setErrorMessage("");
+    setSuccessMessage("");
+  };
+
+  const handleResetForm = () => {
+    reset();
+    clearMessage();
+  };
+
+  useEffect(() => {
+    setErrorMessage("");
+  }, [username]);
+
+  useEffect(() => {
+    let timeout;
+    if (successMessage) {
+      timeout = setTimeout(() => setSuccessMessage(""), 2000);
+    }
+    return clearTimeout(timeout);
+  }, [successMessage]);
+
   return (
     <form onSubmit={handleSubmit(handleRegister)}>
       <div
@@ -105,9 +154,17 @@ export default function Register({ setRegistering }: RegisterProps) {
               type="password"
             />
           </div>
-          <span className={"col-span-2 text-red-500 text-nowrap text-center"}>
-            {errors.retypedPassword && errors.retypedPassword.message}
-          </span>
+          {(errors.retypedPassword || errorMessage || successMessage) && (
+            <div className={"col-span-2 text-red-500 text-nowrap text-center"}>
+              <p>{errors.retypedPassword && errors.retypedPassword.message}</p>
+              <p>{errorMessage}</p>
+              <p
+                className={"col-span-2 text-green-500 text-nowrap text-center"}
+              >
+                {successMessage}
+              </p>
+            </div>
+          )}
           <div className={"w-full space-y-2 col-span-2"}>
             <CustomButton>Register</CustomButton>
           </div>
@@ -117,7 +174,11 @@ export default function Register({ setRegistering }: RegisterProps) {
               className={
                 "text-primary hover:scale-125 hover:translate-x-2 hover:-translate-y-1 transition-transform duration-200 ease-in-out rounded-lg p-1 focus:outline-none focus:ring-2 focus:ring-primary "
               }
-              onClick={() => setRegistering?.(false)}
+              type="button"
+              onClick={() => {
+                setRegistering?.(false);
+                setTimeout(() => handleResetForm(), 500);
+              }}
             >
               Login
             </button>
