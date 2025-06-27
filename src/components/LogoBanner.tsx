@@ -25,7 +25,7 @@ export default function LogoBanner({ className }: LogoBannerProps) {
         <img
           src={"/pattern.png"}
           alt={"pattern"}
-          className={"absolute z-1 h-full object-cover"}
+          className={"absolute z-1 h-full w-full object-cover"}
         />
       </div>
     </div>

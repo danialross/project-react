@@ -10,7 +10,8 @@ type LoginProps = {
   setSuccessLogin: Dispatch<SetStateAction<boolean>>;
 };
 
-export default function Login({ setRegistering }: LoginProps) {
+type LoginForm = {
+  username: string;
   password: string;
 };
 
