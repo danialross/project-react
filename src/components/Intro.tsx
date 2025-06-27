@@ -33,12 +33,12 @@ export default function Intro() {
     >
       <div className={"relative w-1/3 "}>
         <div
-          className={`absolute ${isShowingLogo ? "translate-x-full" : "translate-x-0"} top-0 w-full h-full outline outline-4 outline-tertiary bg-tertiary transition-transform duration-700 ease-in-out`}
+          className={`absolute ${isShowingLogo ? "translate-x-full" : "translate-x-0"} top-0 w-full h-full bg-tertiary transition-transform duration-700 ease-in-out`}
         />
         <div
-          className={`absolute ${isHidingLogo ? "translate-x-0" : "-translate-x-full"} top-0 w-full h-full outline outline-4 outline-tertiary bg-tertiary transition-transform duration-700 ease-in-out`}
+          className={`absolute ${isHidingLogo ? "translate-x-0" : "-translate-x-full"} top-0 w-full h-full  bg-tertiary transition-transform duration-700 ease-in-out`}
         />
-        <img src={"/Logo.webp"} className={"object-contain"} />
+        <img src={"/Logo.webp"} alt="Logo" className={"object-contain"} />
       </div>
     </div>
   );

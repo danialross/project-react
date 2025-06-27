@@ -32,7 +32,6 @@ export default function Register({
     formState: { errors },
     reset,
     watch,
-    clearErrors,
   } = useForm<FormValues>({
     defaultValues: {
       username: "",
@@ -78,11 +77,11 @@ export default function Register({
   }, [username]);
 
   useEffect(() => {
-    let timeout;
+    let timeout: NodeJS.Timeout;
     if (successMessage) {
       timeout = setTimeout(() => setSuccessMessage(""), 2000);
     }
-    return clearTimeout(timeout);
+    return () => clearTimeout(timeout);
   }, [successMessage]);
 
   return (
